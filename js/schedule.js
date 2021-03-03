@@ -92,7 +92,7 @@ var classes = [
   {NAME:"Literature Alive ",DAY:"wednesday",MIN_AGE:6,MAX_AGE:10, TEACHER:"Jenkins ", ROOM:5,TYPE:"default", START_TIME:"1:45", END_TIME:"2:45"},
   {NAME:"Contemporary Guitar 2",DAY:"wednesday",MIN_AGE:9,MAX_AGE:19, TEACHER:"L. Dircks", ROOM:8,TYPE:"default", START_TIME:"2", END_TIME:"3"},
   {NAME:"Computer Science Discoveries 2",DAY:"wednesday",MIN_AGE:11,MAX_AGE:16, TEACHER:"Elkins", ROOM:2,TYPE:"default", START_TIME:"2", END_TIME:"4"},
-  {NAME:"Chorale (or Men's/ Women's Chorus)",DAY:"wednesday",MIN_AGE:10,MAX_AGE:19, TEACHER:"Barrera", ROOM:3,TYPE:"default", START_TIME:"2", END_TIME:"4"},
+  {NAME:"Chorale(or Men's/ Women's Chorus)",DAY:"wednesday",MIN_AGE:10,MAX_AGE:19, TEACHER:"Barrera", ROOM:3,TYPE:"default", START_TIME:"2", END_TIME:"4"},
   {NAME:"Praise / Contemporary III",DAY:"wednesday",MIN_AGE:9,MAX_AGE:19, TEACHER:"Harnsburger", ROOM:9,TYPE:"default", START_TIME:"2", END_TIME:"3"},
   {NAME:"Team Policy Debate",DAY:"wednesday",MIN_AGE:13,MAX_AGE:18, TEACHER:"Eschen", ROOM:8,TYPE:"default", START_TIME:"3", END_TIME:"4:30"},
   {NAME:"Calculus",DAY:"wednesday",MIN_AGE:14,MAX_AGE:18, TEACHER:"Tucker", ROOM:4,TYPE:"default", START_TIME:"3", END_TIME:"5"},
