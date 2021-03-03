@@ -1,6 +1,19 @@
+var rooms = [["Room 1",""],["Room 2:", "Computer Lab"],["Room 3:","Music Room"],["Room 4",""],["Room 5",""],["Room 6",""],["Room 7:","Nursery"],["Room 8",""],["Youth Room:","(Dance)"],["Elsewhere",""]];
+var types = {
+    "art":"Fuchsia",
+    "private":"LightSteelBlue",
+    "group":"YellowGreen",
+    "coral":"Thistle",
+    "elementary":"Red",
+    "middle":"Orange",
+    "other":"Grey",
+    "Dr":"Yellow",
+    "default":"LightBlue"
+    };
+
 // basic structure
 var svgTxt = d3.select("#vis1").append("svg");
-svgTxt.attr("height", 1200).attr("width", 1410).attr("id","roomsNtimes");
+svgTxt.attr("height", 1200).attr("width", 1550).attr("id","roomsNtimes");
 
 /* area is 1260px + 100px border on top and 50px bottom for height
  * that means each room has 130px class width plus 5px padding each side giving 10px between adjacent classes
@@ -9,7 +22,7 @@ svgTxt.attr("height", 1200).attr("width", 1410).attr("id","roomsNtimes");
 
 
 // quantized scale for room no.
-var room = d3.scaleQuantize().domain([1,9]).range([135,270,405,540,675,810,945,1080,1215]);
+var room = d3.scaleQuantize().domain([1,10]).range([135,270,405,540,675,810,945,1080,1215,1350]);
 // scale for class start time
 var time = d3.scaleLinear().domain([8,18.5]).range([100,1150]);
 var howLong = d3.scaleLinear().domain([0,1]).range([0,100])
@@ -32,13 +45,13 @@ for(i=8;i<=18.5;i++){
     let t = i;
     if(t > 12){t = t -12;}
     svgTxt.append("text").text(t+":00").attr("x",50).attr("y",time(i)).attr("style","text-anchor:middle;");
-    svgTxt.append("line").attr("x1",80).attr("y1",time(i)).attr("x2",1410).attr("y2",time(i)).attr("style","stroke: rgb(40,40,60); stroke-width:3px;");
+    svgTxt.append("line").attr("x1",80).attr("y1",time(i)).attr("x2",1550).attr("y2",time(i)).attr("style","stroke: rgb(40,40,60); stroke-width:3px;");
     svgTxt.append("text").text(t+":30").attr("x",50).attr("y",time(i+.5)).attr("style","text-anchor:middle;");
-    svgTxt.append("line").attr("x1",80).attr("y1",time(i+.5)).attr("x2",1410).attr("y2",time(i+.5)).attr("style","stroke: rgb(40,40,60); stroke-width:3px;");
+    svgTxt.append("line").attr("x1",80).attr("y1",time(i+.5)).attr("x2",1550).attr("y2",time(i+.5)).attr("style","stroke: rgb(40,40,60); stroke-width:3px;");
 }
 
 var svg = svgTxt.append("svg");
-svg.attr("height", 1200).attr("width", 1410).attr("id","schedule");//.attr("style","background-color: teal;");
+svg.attr("height", 1200).attr("width", 1550).attr("id","schedule");//.attr("style","background-color: teal;");
 
 
 // break the classes apart into usable data structures by day
@@ -104,6 +117,7 @@ function updateClasses(){
         .attr("y", (d) => time(timeToNum(d.START_TIME)))
         .attr("width", 130)
         .attr("height", (d) => howLong(timeToNum(d.END_TIME)-timeToNum(d.START_TIME)))
+        .attr("style","outline-style:solid;outline-width:1px;")
         .attr("fill",function(d){
             let colour = fillColor(d,types[d.TYPE]);
             // calls the text generator for this class
@@ -115,7 +129,7 @@ function updateClasses(){
 // the stupid way i'm filtering for age.
 function fillColor(d, color){
     if(filter){
-        if(d.MIN_AGE > age || age > d.MAX_AGE){
+        if((d.MIN_AGE > age || age > d.MAX_AGE) && d.MAX_AGE != -1){
             return "transparent";
         }
     }
@@ -170,7 +184,13 @@ function fillText(d, colour){
                 .attr("y",(time(timeToNum(d.START_TIME))+(howLong(timeToNum(d.END_TIME)-timeToNum(d.START_TIME)))/2.)-24);
         }
         // ages allowed
-        if(d.MAX_AGE >= 19){
+        if(d.MAX_AGE == -1){
+            svg.append("text")
+                .text("(By approval only.)")
+                .attr("style","text-anchor:middle;")
+                .attr("x",room(d.ROOM)+65)
+                .attr("y",(time(timeToNum(d.START_TIME))+(howLong(timeToNum(d.END_TIME)-timeToNum(d.START_TIME)))/2.)-8+overflow);
+        }else if(d.MAX_AGE >= 19){
             svg.append("text")
                 .text("(ages " + d.MIN_AGE + "+)")
                 .attr("style","text-anchor:middle;")
