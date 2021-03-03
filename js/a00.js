@@ -8,7 +8,8 @@ var types = {
     "middle":"Orange",
     "other":"Grey",
     "Dr":"Yellow",
-    "default":"LightBlue"
+    "default":"LightBlue",
+    "":"LightBlue"
     };
 
 // basic structure
