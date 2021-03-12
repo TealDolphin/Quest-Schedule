@@ -1,15 +1,17 @@
-var rooms = [["Room 1",""],["Room 2:", "Computer Lab"],["Room 3:","Music Room"],["Room 4",""],["Room 5",""],["Room 6",""],["Room 7:","Nursery"],["Room 8",""],["Youth Room:","(Dance)"],["Elsewhere",""]];
+var rooms = [["Room 1",""],["Room 2:", "Computer Lab"],["Music Room"],["Room 4",""],["Room 5",""],["Room 6",""],["Room 7:","Nursery"],["Room 8",""],["Youth Room:","(Dance)"],["Elsewhere",""]];
 var types = {
     "art":"Fuchsia",
     "private":"LightSteelBlue",
-    "group":"YellowGreen",
-    "coral":"Thistle",
+    "dance":"YellowGreen",
+    "music":"DodgerBlue",
     "elementary":"Red",
     "middle":"Orange",
     "other":"Grey",
-    "Dr":"Yellow",
+    "preschool":"Pink",
+    "hs":"Yellow",
     "default":"LightBlue",
-    "":"LightBlue"
+    "":"LightBlue",
+    "reserved":"black"
     };
 
 // basic structure
@@ -272,7 +274,7 @@ tabbing(0);
     
 var filtering = document.getElementById("filtering");
 // checkbox for age filter
-filtering.innerHTML += "<input id=\"filter\" type=\"checkbox\"><label for=\"filter\" style=\"font-size:1.3em;\">&ensp;Filter by Age&ensp;</label>";
+filtering.innerHTML = "<input id=\"filter\" type=\"checkbox\"><label for=\"filter\" style=\"font-size:1.3em;\">&ensp;Filter by Age&ensp;</label>";
 // place age slider in the page
 filtering.innerHTML += "<input type=\"range\" min=\"3\" max=\"19\" value=\"7\" class=\"slider\" id=\"myRange\"><label for=\"myRange\" style=\"font-size:1.3em;\" id=\"age\"></label>";
 var ageView = document.getElementById("age");
